@@ -102,8 +102,8 @@ type Instance struct {
 	Each                   int32   `ini:"each"`
 	Retry                  int32   `ini:"retry"`
 	CloudInit              string  `ini:"cloud-init"`
-	MinTime                int32   `ini:"minTime"`
-	MaxTime                int32   `ini:"maxTime"`
+	MinTime                float32   `ini:"minTime"`
+	MaxTime                float32   `ini:"maxTime"`
 }
 
 type Message struct {
@@ -1229,17 +1229,17 @@ func LaunchInstances(ads []identity.AvailabilityDomain) (sum, num int32) {
 // 	printf("Sleep %d Second...\n", second)
 // 	time.Sleep(time.Duration(second) * time.Second)
 // }
-func sleepRandomSecond(min, max float64) {
-	var second float64
+func sleepRandomSecond(min, max float32) {
+	var second float32
 	if min <= 0 || max <= 0 {
 		second = 1
 	} else if min >= max {
 		second = max
 	} else {
-		second = rand.Float64()*(max-min) + min
+		second = rand.Float32()*(max-min) + min
 	}
 	printf("Sleep %.2f Second...\n", second)
-	time.Sleep(time.Duration(second * float64(time.Second)))
+	time.Sleep(time.Duration(second * float32(time.Second)))
 }
 
 
