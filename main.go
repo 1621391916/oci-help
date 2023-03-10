@@ -1216,19 +1216,32 @@ func LaunchInstances(ads []identity.AvailabilityDomain) (sum, num int32) {
 	}
 	return
 }
-
-func sleepRandomSecond(min, max int32) {
-	var second int32
+// modify
+// func sleepRandomSecond(min, max int32) {
+// 	var second int32
+// 	if min <= 0 || max <= 0 {
+// 		second = 1
+// 	} else if min >= max {
+// 		second = max
+// 	} else {
+// 		second = rand.Int31n(max-min) + min
+// 	}
+// 	printf("Sleep %d Second...\n", second)
+// 	time.Sleep(time.Duration(second) * time.Second)
+// }
+func sleepRandomSecond(min, max float64) {
+	var second float64
 	if min <= 0 || max <= 0 {
 		second = 1
 	} else if min >= max {
 		second = max
 	} else {
-		second = rand.Int31n(max-min) + min
+		second = rand.Float64()*(max-min) + min
 	}
-	printf("Sleep %d Second...\n", second)
-	time.Sleep(time.Duration(second) * time.Second)
+	printf("Sleep %.2f Second...\n", second)
+	time.Sleep(time.Duration(second * float64(time.Second)))
 }
+
 
 // ExampleLaunchInstance does create an instance
 // NOTE: launch instance will create a new instance and VCN. please make sure delete the instance
