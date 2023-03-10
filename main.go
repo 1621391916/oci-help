@@ -1104,8 +1104,8 @@ func LaunchInstances(ads []identity.AvailabilityDomain) (sum, num int32) {
 			servErr, isServErr := common.IsServiceError(err)
 
 			// API Errors: https://docs.cloud.oracle.com/Content/API/References/apierrors.htm
-
-			if isServErr && (400 <= servErr.GetHTTPStatusCode() && servErr.GetHTTPStatusCode() <= 405) ||
+			# modify
+			if isServErr && (401 <= servErr.GetHTTPStatusCode() && servErr.GetHTTPStatusCode() <= 405) ||
 				(servErr.GetHTTPStatusCode() == 409 && !strings.EqualFold(servErr.GetCode(), "IncorrectState")) ||
 				servErr.GetHTTPStatusCode() == 412 || servErr.GetHTTPStatusCode() == 413 || servErr.GetHTTPStatusCode() == 422 ||
 				servErr.GetHTTPStatusCode() == 431 || servErr.GetHTTPStatusCode() == 501 {
